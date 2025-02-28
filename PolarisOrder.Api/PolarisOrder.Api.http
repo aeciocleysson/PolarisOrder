@@ -1,0 +1,6 @@
+@PolarisOrder.Api_HostAddress = http://localhost:5208
+
+GET {{PolarisOrder.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
