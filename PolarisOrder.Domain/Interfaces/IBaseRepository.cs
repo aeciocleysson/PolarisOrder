@@ -6,12 +6,12 @@ namespace PolarisOrder.Domain.Interfaces
     {
         Task<T> SaveAsync(T model);
 
-        T GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(int id);
 
-        List<T> GetallAsync();
+        Task<List<T>> GetAllAsync();
 
         Task<T> UpdateAsync(T model);
 
-        bool DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PolarisOrder.Infrastructure.Context;
@@ -11,9 +12,11 @@ using PolarisOrder.Infrastructure.Context;
 namespace PolarisOrder.Infrastructure.Migrations
 {
     [DbContext(typeof(PolarisOrderDbContext))]
-    partial class PolarisOrderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250310005558_v1.0.1")]
+    partial class v101
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,9 +55,6 @@ namespace PolarisOrder.Infrastructure.Migrations
 
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Quantidade")
                         .IsRequired()
@@ -109,9 +109,6 @@ namespace PolarisOrder.Infrastructure.Migrations
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("Quantidade")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -154,9 +151,6 @@ namespace PolarisOrder.Infrastructure.Migrations
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
-
                     b.HasKey("Id");
 
                     b.ToTable("Cardapio");
@@ -181,9 +175,6 @@ namespace PolarisOrder.Infrastructure.Migrations
 
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -215,9 +206,6 @@ namespace PolarisOrder.Infrastructure.Migrations
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -247,9 +235,6 @@ namespace PolarisOrder.Infrastructure.Migrations
 
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -285,9 +270,6 @@ namespace PolarisOrder.Infrastructure.Migrations
 
                     b.Property<bool>("Excluido")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("Exclusao")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Nome")
                         .IsRequired()

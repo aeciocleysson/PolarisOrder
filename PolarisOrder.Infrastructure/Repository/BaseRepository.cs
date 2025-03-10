@@ -1,4 +1,5 @@
-﻿using PolarisOrder.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PolarisOrder.Domain.Interfaces;
 using PolarisOrder.Domain.Models;
 using PolarisOrder.Infrastructure.Context;
 
@@ -13,31 +14,46 @@ namespace PolarisOrder.Infrastructure.Repository
             _context = context;
         }
 
-        public bool DeleteAsync(int id)
+        public virtual async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var model = await GetByIdAsync(id);
+            model.Delete();
+
+            _context.ChangeTracker.Clear();
+
+            _context.Entry(model).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public List<T> GetallAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public T GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> SaveAsync(T model)
+        public virtual async Task<T> SaveAsync(T model)
         {
             await _context.Set<T>().AddAsync(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public Task<T> UpdateAsync(T model)
+        public virtual async Task<T> UpdateAsync(T model)
         {
-            throw new NotImplementedException();
+            _context.ChangeTracker.Clear();
+
+            model.Atualizacao = DateTime.Now;
+
+            _context.Entry(model).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return model;
         }
     }
 }
